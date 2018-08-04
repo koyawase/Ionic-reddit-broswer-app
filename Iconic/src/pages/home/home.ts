@@ -8,11 +8,21 @@ import { RedditService } from '../../app/services/reddit.service';
 })
 export class HomePage {
 
+  posts: any;
+  search: string;
   constructor(public navCtrl: NavController, private redditService: RedditService) {
+    this.search = 'popular';
+  }
 
+  getSearch(q: string) { 
+    this.search = q;
+    this.ngOnInit();
   }
 
   ngOnInit(){
-    console.log('on init ran');
+    this.redditService.getPosts(this.search).subscribe(response => {
+      this.posts = response.data.children;
+    });
   }
+
 }
