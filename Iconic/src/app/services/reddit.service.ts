@@ -13,7 +13,7 @@ export class RedditService{
     }
 
     getPosts(category){
-        return this.http.get(this.baseUrl+'/'+category+'/top.json?limit=100')
+        return this.http.get(this.baseUrl+'/'+category+'/top.json?limit=50')
         .map(res => res.json());
     }
 }

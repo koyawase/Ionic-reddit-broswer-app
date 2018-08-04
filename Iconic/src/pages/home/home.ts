@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { RedditService } from '../../app/services/reddit.service';
+import { DetailsPage } from '../details/details';
 
 @Component({
   selector: 'page-home',
@@ -25,4 +26,9 @@ export class HomePage {
     });
   }
 
+  viewPost(post){
+    this.navCtrl.push(DetailsPage,{
+      post
+    });
+  }
 }
