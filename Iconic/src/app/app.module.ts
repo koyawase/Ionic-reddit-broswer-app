@@ -16,6 +16,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+import { HttpModule } from '@angular/http';
+
 const firebaseAuth = {
   apiKey: "AIzaSyBF2sCNjRk9yOZqLxW6yLrLzGU15D1-rGA",
   authDomain: "iconic-app-e5967.firebaseapp.com",
@@ -39,7 +41,8 @@ const firebaseAuth = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseAuth),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
