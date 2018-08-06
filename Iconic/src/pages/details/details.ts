@@ -10,7 +10,6 @@ export class DetailsPage {
     post: any;
     constructor(public navCtrl: NavController, public navParams: NavParams) {
       this.post = navParams.get('post');
-      console.log(this.post);
     }
   
     likePost(){
