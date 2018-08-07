@@ -5,12 +5,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
 @Injectable()
 export class FirebaseService {
 
+    
     constructor(public firebase : AngularFireDatabase){
 
-    }
-
-    getLikedPosts(){
-        return this.firebase.list('/posts/');
     }
 
     LikePost(post){
