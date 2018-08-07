@@ -8,9 +8,9 @@
   
   <ion-content padding>
     <ion-list>
-      <ion-item *ngFor="let item of items">
-
-      </ion-item>
+        <ng-container *ngFor="let item of items">
+            <ion-item *ngIf="user == item.user">{{item.likedPost.title}}</ion-item>
+        </ng-container>
     </ion-list>
   </ion-content>
   
