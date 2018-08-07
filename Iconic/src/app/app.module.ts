@@ -14,8 +14,10 @@ import { LikesPage } from '../pages/likes/likes';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { FirebaseService } from './services/firebase.service';
 
 import { HttpModule } from '@angular/http';
 
@@ -42,6 +44,7 @@ const firebaseAuth = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseAuth),
     AngularFireAuthModule,
     HttpModule
@@ -60,6 +63,7 @@ const firebaseAuth = {
   providers: [
     StatusBar,
     SplashScreen,
+    FirebaseService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

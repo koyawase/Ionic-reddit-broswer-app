@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { FirebaseService } from '../../app/services/firebase.service';
+import { AngularFireList } from 'angularfire2/database';
 
 @Component({
   selector: 'page-details',
@@ -8,21 +11,23 @@ import { NavController, NavParams } from 'ionic-angular';
 export class DetailsPage {
 
     post: any;
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    likedPosts: AngularFireList<any>;
+
+    constructor(public navCtrl: NavController, public navParams: NavParams, private fireAuth: AngularFireAuth,
+    public fireService: FirebaseService) {
       this.post = navParams.get('post');
+      this.likedPosts = this.fireService.getLikedPosts();
     }
   
     likePost(){
-      //Post data
-      //string this.post.thumbnail
-      //if this.post.preview != undefined 
-      //boolean this.post.preview.enabled
-      //string this.post.preview.images[0]
-      //string this.post.title
-      //string this.post.author
-      //number this.post.score
-      //number this.post.num_comments
-      //string this.post.permalink
-      //string this.post.selftext
+      let likedPost = {
+        user: this.fireAuth.auth.currentUser.email,
+        likedPost: this.post
+      }
+      this.fireService.LikePost(likedPost);
+    }
+
+    UnlikePost(id){
+      this.fireService.UnlikePost(id);
     }
   }
