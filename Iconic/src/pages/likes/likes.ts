@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { DetailsPage } from '../details/details';
 import firebase from 'firebase';
 
 @Component({
@@ -26,4 +27,9 @@ export class LikesPage {
     this.user = fireAuth.auth.currentUser.email;
   }
 
+  viewPost(post){
+    this.navCtrl.push(DetailsPage,{
+      post
+    });
+  }
 }

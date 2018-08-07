@@ -9,7 +9,16 @@
   <ion-content padding>
     <ion-list>
         <ng-container *ngFor="let item of items">
-            <ion-item *ngIf="user == item.user">{{item.likedPost.title}}</ion-item>
+            <ion-item *ngIf="user == item.user" (click) ="viewPost(item.likedPost)">
+              <ion-thumbnail *ngIf="item.likedPost.thumbnail" item-left>
+                <img src="{{item.likedPost.thumbnail}}">
+              </ion-thumbnail>
+              <h2> {{item.likedPost.title}}</h2>
+              <p>
+                <ion-icon name="thumbs-up"> {{item.likedPost.score}}</ion-icon>
+                <ion-icon name="chatboxes"> {{item.likedPost.num_comments}}</ion-icon>
+              </p>
+            </ion-item>
         </ng-container>
     </ion-list>
   </ion-content>
