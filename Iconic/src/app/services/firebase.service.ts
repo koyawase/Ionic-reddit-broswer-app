@@ -17,4 +17,8 @@ export class FirebaseService {
     UnlikePost(id){
         this.firebase.list('/posts/').remove(id);
     }
+
+    logout(){
+        
+    }
 }
