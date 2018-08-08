@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { DetailsPage } from '../details/details';
-import firebase from 'firebase';
+// import firebase from 'firebase';
 
 @Component({
   selector: 'page-likes',
@@ -10,21 +11,21 @@ import firebase from 'firebase';
 })
 export class LikesPage {
 
-  public user: string;
-  public items: Array<any> = [];
-  public itemRef: firebase.database.Reference = firebase.database().ref('/posts');
+  email: string;
+  user: string;
+  likedPosts: any[];
   ionViewDidLoad(){
-    this.itemRef.on('value', itemSnapshot => {
-      this.items = [];
-      itemSnapshot.forEach( itemSnap => {
-        this.items.push(itemSnap.val());
-        return false;
-      });
+    this.fireDatabase.list('/users/'+this.user).valueChanges().subscribe((data) => { 
+      this.likedPosts = data;
+      console.log(this.likedPosts);
+    },(err)=>{
+       console.log("error : ", err)
     });
  }
 
-  constructor(public navCtrl: NavController, private fireAuth: AngularFireAuth) {
-    this.user = fireAuth.auth.currentUser.email;
+  constructor(public navCtrl: NavController, private fireAuth: AngularFireAuth, private fireDatabase: AngularFireDatabase) {
+    this.email = fireAuth.auth.currentUser.email;
+    this.user = this.email.substring(0,this.email.length-4);
   }
 
   viewPost(post){
@@ -32,4 +33,5 @@ export class LikesPage {
       post
     });
   }
+
 }

@@ -17,6 +17,7 @@ export class ProfilePage {
 
   logout(){
     this.fireAuth.auth.signOut().then(() => {
+        window.location.reload();
         this.app.getRootNav().setRoot(LoginPage);
     });
   }

@@ -17,11 +17,7 @@ export class DetailsPage {
     }
   
     likePost(){
-      let likedPost = {
-        user: this.fireAuth.auth.currentUser.email,
-        likedPost: this.post
-      }
-      this.fireService.LikePost(likedPost);
+      this.fireService.LikePost(this.post);
     }
 
     UnlikePost(id){
