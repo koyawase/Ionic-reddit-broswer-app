@@ -35,6 +35,7 @@ export class RegisterPage {
     this.firebase.auth.createUserWithEmailAndPassword(this.email,this.password)
     .then( data => {
       //successfully created account
+      this.navCtrl.pop();
     })
     .catch(error =>{
       this.alert(error);
