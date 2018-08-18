@@ -17,9 +17,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { FirebaseService } from './services/firebase.service';
 
 import { HttpModule } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 const firebaseAuth = {
   apiKey: "AIzaSyBF2sCNjRk9yOZqLxW6yLrLzGU15D1-rGA",
@@ -63,7 +63,6 @@ const firebaseAuth = {
   providers: [
     StatusBar,
     SplashScreen,
-    FirebaseService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
