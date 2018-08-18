@@ -14,9 +14,9 @@ export class FirebaseService {
         this.user = this.email.substring(0,this.email.length-4);
     }
 
-    LikePost(post){
-        this.firebase.list('/users/'+this.user).push(post);
-    }
+    //LikePost(post){
+    //    this.firebase.list('/users/'+this.user).push(post);
+    //}
 
     UnlikePost(id){
         this.firebase.list('/posts/').remove(id);

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { FirebaseService } from '../../app/services/firebase.service';
-
+import { AngularFireDatabase } from '../../../node_modules/angularfire2/database';
 
 @Component({
   selector: 'page-details',
@@ -11,17 +10,35 @@ import { FirebaseService } from '../../app/services/firebase.service';
 export class DetailsPage {
 
     post: any;
+    email: string;
+    user: string;
+    key: string;
+
     constructor(public navCtrl: NavController, public navParams: NavParams, private fireAuth: AngularFireAuth,
-    public fireService: FirebaseService) {
+    public fireDatabase: AngularFireDatabase) {
       this.post = navParams.get('post');
+      this.email = fireAuth.auth.currentUser.email;
+      this.user = this.email.substring(0,this.email.length-4);    
+      
+      fireDatabase.database.ref('/users/'+this.user).on('value',
+        post => {
+          post.forEach(element => {
+            if(element.val().permalink == this.post.permalink){
+              this.key = element.key;
+            }
+          });
+        }
+      )
     }
   
     likePost(){
-      this.fireService.LikePost(this.post);
+      this.fireDatabase.list('/users/'+this.user).push(this.post);
     }
 
-    UnlikePost(id){
-      this.fireService.UnlikePost(id);
+    unlikePost(){
+      if(this.key != undefined){
+        this.fireDatabase.list('/users/'+this.user).remove(this.key);
+      }
     }
 
   }
