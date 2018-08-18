@@ -38,6 +38,7 @@ export class DetailsPage {
     unlikePost(){
       if(this.key != undefined){
         this.fireDatabase.list('/users/'+this.user).remove(this.key);
+        this.key = undefined;
       }
     }
 
