@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { RedditService } from '../app/services/reddit.service';
 
-import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
+import { Nav } from 'ionic-angular';
 
 
 export interface PageInterface{
@@ -23,7 +23,6 @@ export interface PageInterface{
 })
 export class MyApp {
   rootPage:any = LoginPage;
-
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -47,11 +46,11 @@ export class MyApp {
   ]
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MenuPage');
+    
   }
 
   openPage(page: PageInterface){
-
+    this.nav.setRoot(page.pageName);
   }
 
   isActive(page: PageInterface){
