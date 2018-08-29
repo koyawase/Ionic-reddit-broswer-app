@@ -17,7 +17,6 @@ export class LikesPage {
   ionViewDidLoad(){
     this.fireDatabase.list('/users/'+this.user).valueChanges().subscribe((data) => { 
       this.likedPosts = data;
-      console.log(this.likedPosts);
     },(err)=>{
        console.log("error : ", err)
     });

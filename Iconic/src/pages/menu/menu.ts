@@ -1,11 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { LoginPage } from '../pages/login/login';
-import { RedditService } from '../app/services/reddit.service';
-
 import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
 
 
@@ -17,24 +10,14 @@ export interface PageInterface{
   icon: string;
 }
 
+@IonicPage()
 @Component({
-  templateUrl: 'app.html',
-  providers: [RedditService]
+  selector: 'page-menu',
+  templateUrl: 'menu.html',
 })
-export class MyApp {
-  rootPage:any = LoginPage;
+export class MenuPage {
 
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-  }
-
-
+  rootPage = 'TabsPage';
 
   @ViewChild(Nav) nav: Nav;
 
@@ -45,6 +28,10 @@ export class MyApp {
     {title: 'About', pageName: 'AboutPage', icon:'information-circle'},
     {title: 'Settings', pageName: 'SettingsPage', icon:'settings'},
   ]
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuPage');

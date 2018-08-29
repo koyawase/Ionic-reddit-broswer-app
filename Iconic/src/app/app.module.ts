@@ -10,6 +10,10 @@ import { RegisterPage } from '../pages/register/register';
 import { DetailsPage } from '../pages/details/details';
 import { LikesPage } from '../pages/likes/likes';
 import { ProfilePage } from '../pages/profile/profile';
+import { SettingsPage } from '../pages/settings/settings';
+import { AboutPage } from '../pages/about/about';
+import { MenuPage } from '../pages/menu/menu';
+import { AppPage } from '../app/app';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -39,7 +43,11 @@ const firebaseAuth = {
     RegisterPage,
     DetailsPage,
     LikesPage,
-    ProfilePage
+    ProfilePage,
+    AboutPage,
+    SettingsPage,
+    MenuPage,
+    AppPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +66,11 @@ const firebaseAuth = {
     RegisterPage,
     DetailsPage,
     LikesPage,
-    ProfilePage
+    ProfilePage,
+    AboutPage,
+    SettingsPage,
+    MenuPage,
+    AppPage
   ],
   providers: [
     StatusBar,
