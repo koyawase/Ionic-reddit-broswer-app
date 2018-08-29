@@ -54,7 +54,9 @@ export class MyApp {
       this.nav.setRoot(TabsPage);
     }
     else{
-      this.nav.setRoot(page.pageName);
+      this.nav.setRoot(page.pageName, {
+        data: 'menuNav'
+    });
     }
   }
 
