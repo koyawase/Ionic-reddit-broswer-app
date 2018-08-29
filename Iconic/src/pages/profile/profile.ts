@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { LoginPage } from '../login/login';
 import { App } from 'ionic-angular';
 
@@ -11,8 +12,18 @@ import { App } from 'ionic-angular';
 export class ProfilePage {
 
   email: string;
-  constructor(public navCtrl: NavController, private fireAuth: AngularFireAuth, private app: App) {
+  user: string;
+  likedPosts: number;
+  constructor(public navCtrl: NavController, private fireAuth: AngularFireAuth, private app: App,
+  private fireDatabase: AngularFireDatabase) {
     this.email = fireAuth.auth.currentUser.email;
+    this.user = this.email.substring(0,this.email.length-4);
+   
+    fireDatabase.database.ref('/users/'+this.user).on('value',
+        post => {
+          this.likedPosts = post.numChildren();
+        }
+      )
   }
 
   logout(){
@@ -21,4 +32,5 @@ export class ProfilePage {
         this.app.getRootNav().setRoot(LoginPage);
     });
   }
+
 }
