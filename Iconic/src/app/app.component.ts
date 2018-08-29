@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login';
+import { TabsPage } from '../pages/tabs/tabs';
 import { RedditService } from '../app/services/reddit.service';
 
 import { Nav } from 'ionic-angular';
@@ -39,8 +40,6 @@ export class MyApp {
 
   pages: PageInterface[] = [
     {title: 'Home', pageName: 'TabsPage', tabComponent: 'HomePage', index: 0, icon:'home'},
-    {title: 'Likes', pageName: 'TabsPage', tabComponent: 'LikesPage', index: 1, icon:'heart'},
-    {title: 'Profile', pageName: 'TabsPage', tabComponent: 'ProfilePage', index: 2, icon:'person'},
     {title: 'About', pageName: 'AboutPage', icon:'information-circle'},
     {title: 'Settings', pageName: 'SettingsPage', icon:'settings'},
   ]
@@ -50,7 +49,13 @@ export class MyApp {
   }
 
   openPage(page: PageInterface){
-    this.nav.setRoot(page.pageName);
+    //TabsPage not set up for 'lazy loading so cannot use string. Need to use import.
+    if(page.pageName == 'TabsPage'){
+      this.nav.setRoot(TabsPage);
+    }
+    else{
+      this.nav.setRoot(page.pageName);
+    }
   }
 
   isActive(page: PageInterface){
